@@ -1,0 +1,26 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main {
+    margin: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.character {
+    display: grid;
+    margin: 5px;
+    background-color: white;
+    border: 5px solid red;
+}
+
+.casilla {
+    display: flex;
+    background-color: white;
+    border: 1px solid red;
+    align-items: center;
+    color: black;
+}
