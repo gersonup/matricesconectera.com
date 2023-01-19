@@ -1,5 +1,7 @@
+
+
 $(document).ready(function(){
-    // Dictionary
+
     const characters = {
         "A": [
             [1, 1, 1, 1, 1],
@@ -138,7 +140,7 @@ $(document).ready(function(){
             [1, 1, 1, 1, 1],
             [0, 0, 1, 0, 0],
             [0, 0, 1, 0, 0],
-            [0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0],
             [0, 0, 1, 0, 0]
         ],
         "U": [
@@ -332,13 +334,18 @@ $(document).ready(function(){
         ]
       };
 
+    $("#word").change(function(e) {
+        e.preventDefault();
+        $(".main").empty();
 
-    let word = "niño";
-    word = word.toUpperCase();
-    var word_array = word.split("");
-    var word_size = word_array.length;
-
-    createWord(word_array);
+        let word = $("#word").val();
+        word = word.toUpperCase();
+        var word_array = word.split("");
+        var word_size = word_array.length;
+    
+        createWord(word_array);
+    });
+    
 
     function createWord(word_array) {
 
