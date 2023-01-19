@@ -14,13 +14,12 @@
     display: grid;
     margin: 5px;
     background-color: white;
-    border: 5px solid red;
+    border: 2px solid red;
 }
 
 .casilla {
     display: flex;
-    background-color: white;
-    border: 1px solid red;
+    border: 0px solid red;
     align-items: center;
     color: black;
     align-content: center;
