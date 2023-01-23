@@ -34,14 +34,26 @@ $(document).ready(function(){
     }
   
     function printWord(word) {
+        $("main").empty();
         let html = "";
         for (let i = 0; i < word.length; i ++) {
             html += '<div class="caracter">';
             console.log(word[i]);
-            for (let j = 0; j < word[j].length; j ++ ) {
-                
+            for (let j = 0; j < word[i].length; j ++ ) {
+                html += '<div class="casilla"></div>';
+                for ( let k = 0; k < word[i][j]; k++) {
+                    if (word[i][j] == 0) {
+                        html += '<div class="casilla"></div>';
+                    } else {
+                        html += '<div class="casilla">'+word[i][j]+'</div>';
+                    }
+                }
+                html += '</div>';   
             }
+            html += '</div>';
         }
+
+        $(".main").append(html);
     }
     
 });
