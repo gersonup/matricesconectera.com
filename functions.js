@@ -40,22 +40,20 @@ $(document).ready(function(){
             html += '<div class="caracter">';
             console.log(word[i]);
             for (let j = 0; j < word[i].length; j ++ ) {
-                html += '<div class="casilla"></div>';
-                for ( let k = 0; k < word[i][j]; k++) {
-                    if (word[i][j] == 0) {
+                html += '<div class="fila">';
+                for ( let k = 0; k < word[i][j].length; k++) {
+                    if (word[i][j][k] == 0) {
                         html += '<div class="casilla"></div>';
                     } else {
-                        html += '<div class="casilla">'+word[i][j]+'</div>';
+                        html += '<div class="casilla">'+word[i][j][k]+'</div>';
                     }
                 }
                 html += '</div>';   
             }
             html += '</div>';
         }
-
         $(".main").append(html);
     }
-    
 });
 
   

@@ -5,6 +5,7 @@
 }
 
 .main {
+    display: grid;
     margin: 50px;
     display: flex;
     justify-content: space-evenly;
@@ -12,13 +13,21 @@
 
 
 .character {
+    width: 100px;
+    height: 100px;
     display: grid;
     margin: 2px;
     background-color: white;
     border: 2px solid red;
 }
 
+.fila {
+    display: inline-block;
+}
+
 .casilla {
+    height: 30px;
+    width: 30px;
     display: flex;
     border: 0px solid red;
     align-items: center;
