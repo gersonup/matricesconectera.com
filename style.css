@@ -4,24 +4,8 @@
     box-sizing: border-box;
 }
 
-.main {
-    margin: 50px;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-
 .character {
-    display: grid;
-    margin: 2px;
-    background-color: white;
-    border: 2px solid red;
-}
-
-.casilla {
-    display: flex;
-    border: 0px solid red;
-    align-items: center;
-    color: black;
-    align-content: center;
+    padding: 5px;
+    margin: 5px;
+    display: inline-block;
 }
