@@ -12,9 +12,9 @@ $.getScript(url, function(){
         /* Inicializa la matriz */
         function fillMatrix(size) {
             let matrixChars = new Array();
-            for (i=0; i < size; i++) {
+            for (let i = 0; i < size; i++) {
                 matrixChars[i] = new Array();
-                for (j=0; j<size; j++) {
+                for (let j = 0; j < size; j++) {
                     matrixChars[i][j] = 0;
                 }
             }
@@ -27,13 +27,13 @@ $.getScript(url, function(){
             let wordArray = word.split("");
             let wordMatrix = new Array();
 
-            for (i = 0; i < wordArray.length; i++) {
+            for (let i = 0; i < wordArray.length; i++) {
                 let patternsChar = patterns[wordArray[i]];
                 let charMatrix = fillMatrix(size);
 
                 for (const key in patternsChar) {
                     const axis = key.includes("x")?"x":"y";
-                    const position = key.includes("0") ? 0 : (key.includes("50")? 50: 100);
+                    const position = key.includes("100") ? 100 : (key.includes("50")? 50: 0);
                     charMatrix = resolvePattern(patternsChar[key],size,axis,position, charMatrix);
                 }
 
@@ -48,9 +48,13 @@ $.getScript(url, function(){
         console.log(writeWord(word));
 
         function resolvePattern(pattern, n, axis, position, matrix) {
+            if(pattern == '') {
+                return matrix;
+            }
+
             let patternArray = new Array();
             let n50 = Math.ceil(n/2);
-            console.log(n50);
+
             /* Initial Array */
             for (let i = 0 ; i < n; i ++) {
                 patternArray[i] = 0;
@@ -151,11 +155,15 @@ $.getScript(url, function(){
         }
 
         function fillCharMatrix(patternResolved, axis, position, matrix) {
-            let n50 = Math.ceil((matrix.length/2));
+            let n50 = Math.ceil((matrix.length/2))-1;
             let n = matrix.length-1;
 
             if (axis == "y") {
                 for(let i = 0; i < patternResolved.length; i ++) {
+
+                    if (patternResolved[i] == 0 ) {
+                        continue;
+                    }
 
                     for(let j = 0; j < matrix.length; j ++) {
                        
@@ -172,6 +180,10 @@ $.getScript(url, function(){
             } else if (axis == "x") {
                 for(let i = 0; i < patternResolved.length; i ++) {
 
+                    if (patternResolved[i] == 0 ) {
+                        continue;
+                    }
+                    
                     for(let j = 0; j < matrix.length; j ++) {
                        
                         if (position == 0) {
