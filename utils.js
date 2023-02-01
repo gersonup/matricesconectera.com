@@ -1,11 +1,11 @@
 const characters = {
     "A": {
-        x0: '+all',
+        x0: '-1+all-1',
         x50: '+all',
         x100: '',
-        y0: '+all',
+        y0: '-1+all',
         y50: '',
-        y100: '+all',
+        y100: '-1+all',
         xy: ''
     },
     "B": {
