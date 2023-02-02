@@ -125,6 +125,11 @@ function resolvePattern(pattern, n, axis, position, matrix) {
             patternArray[i] = 1;
         }
         break;
+    case '-50%-1+all%-1':
+        for (let i = n50 ; i < n-1; i ++) {
+            patternArray[i] = 1;
+        }
+        break;
     case '-1+all-50%':
         for (let i = 1 ; i < n50-1; i ++) {
             patternArray[i] = 1;
@@ -139,7 +144,7 @@ function resolvePattern(pattern, n, axis, position, matrix) {
 
         for (let k = 0 ; k < xyPatterns.length; k++) {
             switch(xyPatterns[k]) {
-                case '(+x+y)':
+                case '+(+x+y)':
                     counter = n50;
                     for (let i = n50-1; i < n ; i ++ ) {
                         counter--;
@@ -147,23 +152,48 @@ function resolvePattern(pattern, n, axis, position, matrix) {
                         matrix[counter][i] = 1;
                     }  
                     break;
-                case '(+x-y)':
+                case '+(+x-y)':
                     for (let i = n50-1; i < n ; i ++ ) {
                         matrix[i][i] = 1;
                     }  
                     break;
-                case '(-x+y)':
+                case '+(-x+y)':
                     for (let i = 0; i < n50 ; i ++ ) {
                         matrix[i][i] = 1;
                     }
                     break;
-                case '(-x-y)':
+                case '+(-x-y)':
                     counter = n50;
                     for (let i = n50-1; i < n ; i ++ ) {
                         counter--;
                         counter = counter == -1 ? 0 : counter;
                         matrix[i][counter] = 1;
                     } 
+                    break;
+                case '-(+x-y)':
+                    counter = n-1;
+                    for (let i = n50-1; i < n ; i ++ ) {
+                        matrix[i][counter] = 1;
+                        counter--;
+                        counter = counter == -1 ? 0 : counter;
+                    }  
+                    break;
+                case '-(-x-y)':
+                    limit = n%2==0 ? n50-1 : n50;
+                    counter = n50-1;
+                    for (let i = 0; i < limit ; i ++ ) {
+                        
+                        matrix[counter][i] = 1;
+                        counter ++;
+                    }  
+                    break;
+                case '-(-x+y)':
+                    counter = n50-1;
+                    for (let i = 0; i < n50 ; i ++ ) {
+                        matrix[i][counter] = 1;
+                        counter--;
+                        counter = counter == -1 ? 0 : counter;
+                    }  
                     break;
             }
         }
@@ -211,10 +241,8 @@ function fillCharMatrix(patternResolved, axis, position, matrix) {
                 matrix[n50][j] = patternResolved[j];
             } else if (position == 100) {
                 matrix[n-1][j] = patternResolved[j];
-            }
-            
+            }   
         }
-        
     }
 
     return matrix;
@@ -222,7 +250,6 @@ function fillCharMatrix(patternResolved, axis, position, matrix) {
 
 function drawHtmlMatrix(matrix) {
     let html = "";
-
     for (let p = 0; p < matrix.length; p ++) {
         html += '<pre>'
         for(let i = 0; i < matrix[p].length; i++) {
